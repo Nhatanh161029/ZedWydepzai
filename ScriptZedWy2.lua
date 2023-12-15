@@ -1,7 +1,7 @@
 _G.Settings = {
     ["Team"] = "Pirates",
     ["lam theo thg zedwy keu"] = true,
-    ["noi may muon vut df"] = "" -- copy cai cframe o duoi de khi no tp den la vut ngay luon 
+    ["noi may muon vut df"] = "Cframe.new(-12471.169921875, 374.94024658203, -7551.677734375)" -- copy cai cframe o duoi de khi no tp den la vut ngay luon 
 }
 local j=game:GetService("UserInputService");
 local W=game:GetService('VirtualUser');
