@@ -172,7 +172,7 @@ spawn(function()
             pcall(function()
                 if World2 == true then
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
-                    toposition(CFrame.new(-380.47927856445, 77.220390319824, 255.82550048828))
+                    toposition(CFrame.new(-390.34829711914, 321.89730834961, 869.00506591797))
                 end
                 if game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame == CFrame.new(-390.34829711914, 321.89730834961, 869.00506591797) then
                     d() 
