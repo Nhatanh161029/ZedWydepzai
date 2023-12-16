@@ -1,14 +1,29 @@
 bu_cc_a = true
-if game:GetService("Players").LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam") then
-    repeat wait()
-    if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("Main").ChooseTeam.Visible == true then
-    for i, v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Marines.Frame.ViewportFrame.TextButton.Activated)) do
-    v.Function()
+local function changeteam(team)
+    game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("SetTeam", team)
+    local makeVisible = {"RaceEnergy","Compass","Energy","AlliesButton","Code",
+    "CrewButton","HomeButton","Mute","Settings","MenuButton","Beli","Fragments",
+    "Level",
+    --"Radar",
+    "HP"}
+    if game:GetService("Players").LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam") then
+        game:GetService("Players").LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam"):Destroy()
     end
+    for i,v in pairs(makeVisible) do
+        if v == "RaceEnergy" then
+            if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Awakening") or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Awakening") then
+                game:GetService("Players").LocalPlayer.PlayerGui.Main[v].Visible = true
+            end
+        else
+            game:GetService("Players").LocalPlayer.PlayerGui.Main[v].Visible = true
+        end
     end
-    until game.Players.LocalPlayer.Team ~= nil and game:IsLoaded()
-    end
-	
+    game:GetService("Workspace").CurrentCamera.CameraType = Enum.CameraType.Custom
+    game:GetService("Workspace").CurrentCamera.CameraSubject = game:GetService("Players").LocalPlayer.Character.Humanoid
+    game:GetService("Workspace").CurrentCamera.CFrame = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
+end
+changeteam("Marines")
+wait(1)
 local placeId = game.PlaceId
 if placeId == 2753915549 then
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
@@ -172,9 +187,9 @@ spawn(function()
             pcall(function()
                 if World2 == true then
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
-                    toposition(CFrame.new(-390.34829711914, 321.89730834961, 869.00506591797))
+                    toposition(CFrame.new(-380.47927856445, 77.220390319824, 255.82550048828))
                 end
-                if game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame == CFrame.new(-390.34829711914, 321.89730834961, 869.00506591797) then
+                if game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame == CFrame.new(-380.47927856445, 77.220390319824, 255.82550048828) then
                     d() 
                 end
             end)
