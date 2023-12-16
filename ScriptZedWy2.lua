@@ -1,6 +1,4 @@
-bu_cc_a = true
-_G.Team = "Pirates"
-
+ 
 repeat wait() until game.Players
     repeat wait() until game.Players.LocalPlayer
     repeat wait() until game.ReplicatedStorage
