@@ -1,10 +1,12 @@
 bu_cc_a = true
-local a = game.PlaceId
-if a == 2753915549 then
+local placeId = game.PlaceId
+if placeId == 2753915549 then
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
-elseif a == 4442272183 then
-    b = true
-elseif a == 7449423635 then
+elseif placeId == 4442272183 then
+    World2 = true
+elseif placeId == 7449423635 then
+    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
+else
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
 end
 function toposition(Pos)
@@ -158,7 +160,7 @@ spawn(function()
     while task.wait() do 
         if bu_cc_a then
             pcall(function()
-                if b == true then
+                if World2 == true then
                     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
                     toposition(CFrame.new(-380.47927856445, 77.220390319824, 255.82550048828))
                 end
