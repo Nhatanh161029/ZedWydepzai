@@ -1,4 +1,5 @@
 bu_cc_a = true
+_G.Team = "Marine"
 if not game:IsLoaded() then repeat game.Loaded:Wait() until game:IsLoaded() end
 pcall(function()
 if game:GetService("Players").LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam") then
