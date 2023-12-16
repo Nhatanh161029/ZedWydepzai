@@ -21,36 +21,6 @@ function toposition(Pos)
         _G.Clip = false
     end
 end
-function StopTween(target)
-    if not target then
-        _G.StopTween = true
-        wait()
-       Tween(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame)
-        wait()
-        if game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
-            game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
-        end
-        _G.StopTween = false
-        _G.Clip = false
-    end
-end
-spawn(function()
-	while task.wait() do
-		pcall(function()
-			if bu_cc_a then
-				if not game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip") then
-					local Noclip = Instance.new("BodyVelocity")
-					Noclip.Name = "BodyClip"
-					Noclip.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-					Noclip.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
-					Noclip.Velocity = Vector3.new(0,0,0)
-				end
-			else
-				game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
-			end
-		end)
-	end
-end)
 function c()
     pcall(function()
         game.Players.LocalPlayer.PlayerGui.Main.FruitInventory.Position = UDim2.new(10.100, 0, 0.100, 0) -- HideUi
@@ -198,8 +168,6 @@ spawn(function()
                     end
                 until not bu_cc_a
             end)
-        elseif not bu_cc_a then
-            StopTween(bu_cc_a)
         end
     end
 end)
