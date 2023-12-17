@@ -226,6 +226,45 @@ local FarmTab = Window:MakeTab({
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
+Main:AddDropdown({
+    Name = "Select Weapon",
+    Default = "1",
+    Options = {"Melee", "Sword"},
+    Callback = function(Value)
+    _G.SelectWeapon  = value
+    end    
+}) 
+
+
+function Melee()    
+for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+        if v.ClassName == "Tool" then
+            if v.ToolTip == "Melee" then
+             Equip(v.Name)
+            end
+        end
+    end
+end
+
+function Sword()
+for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+        if v.ClassName == "Tool" then
+            if v.ToolTip == "Sword" then
+             Equip(v.Name)
+            end
+        end
+    end
+end
+
+function Fruit()
+for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+        if v.ClassName == "Tool" then
+            if v.ToolTip == "Fruit" then
+             Equip(v.Name)
+            end
+        end
+    end
+end
 FarmTab:AddToggle({
     Name = "Auto Farm",
     Default = false,
