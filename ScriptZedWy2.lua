@@ -1,19 +1,3 @@
-bu_cc_a = true
-spawn(function()
-    while task.wait() do 
-        if bu_cc_a then
-            pcall(function()
-                if World2 == true then
-                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
-                    toposition(CFrame.new(-380.47927856445, 77.220390319824, 255.82550048828))
-                end
-                if game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame == CFrame.new(-380.47927856445, 77.220390319824, 255.82550048828) then
-                    d() 
-                end
-            end)
-        end
-    end
-end)
 local function changeteam(team)
     game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("SetTeam", team)
     local makeVisible = {"RaceEnergy","Compass","Energy","AlliesButton","Code",
