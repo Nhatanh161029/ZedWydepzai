@@ -229,7 +229,7 @@ local FarmTab = Window:MakeTab({
 Main:AddDropdown({
     Name = "Select Weapon",
     Default = "1",
-    Options = {"Melee", "Sword"},
+    Options = {"Melee", "Sword", "Fruit"},
     Callback = function(Value)
     _G.SelectWeapon  = value
     end    
