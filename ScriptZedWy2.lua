@@ -73,8 +73,8 @@ function dm()
         while wait() do
             if autorand then
                 pcall(function()
-                    game:GetService("VirtualInputManager"):SendKeyEvent(false,"8",false,game)
-                    game:GetService("VirtualInputManager"):SendKeyEvent(true,"8",false,game)
+                    game:GetService("VirtualInputManager"):SendKeyEvent(false,"27",false,game)
+                    game:GetService("VirtualInputManager"):SendKeyEvent(true,"27",false,game)
                 end)
             end
         end
