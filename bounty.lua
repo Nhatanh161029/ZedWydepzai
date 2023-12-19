@@ -2,7 +2,7 @@ getgenv().Key = '0bf4e9a70a94a424'
 repeat wait()
 until game:IsLoaded()
 wait()
-local TableChat = {"ty  for  bounty","Config By #Hkoaa"}
+local TableChat = {"Banana On Top","Config By #Hkoaa"}
 spawn(function()
     while wait() do 
         pcall(function()
@@ -43,11 +43,11 @@ getgenv().Setting = {
     ["Weapons"] = {
         ["Melee"] = {
             ["Enable"] = true,
-            ["Delay"] = 1,
+            ["Delay"] = 3,
             ["Skills"] = {
                 ["Z"] = {
                     ["Enable"] = true,
-                    ["HoldTime"] = 0.2,
+                    ["HoldTime"] = 1.3,
                 },
                [ "X"] = {
                     ["Enable"] = true,
@@ -56,7 +56,7 @@ getgenv().Setting = {
 
                 ["C"] = {
                     ["Enable"] = true,
-                    ["HoldTime"] = 0.1,
+                    ["HoldTime"] = 0.7,
                 },
             },
         },
@@ -65,31 +65,31 @@ getgenv().Setting = {
             ["Delay"] = 1,
             ["Skills"] = {
                 ["Z"] = {
-                    ["Enable"] = true,
+                    ["Enable"] = false,
                     ["HoldTime"] = 1.3,
                 },
                 ["X"] = {
                     ["Enable"] = true,
-                    ["HoldTime"] = 0,
+                    ["HoldTime"] = 0.2,
                 },
 
                 ["C"] = {
                     ["Enable"] = true,
-                    ["HoldTime"] = 0,
+                    ["HoldTime"] = 0.4,
                 },
                 ["V"] = {
                     ["Enable"] = false,
                     ["HoldTime"] = 0,
                 },
                 ["F"] = {
-                    ["Enable"] = false,
+                    ["Enable"] = true,
                     ["HoldTime"] = 0,
                 },
             },
         },
         ["Gun"] = {
             ["Enable"] = false,
-            ["Delay"] = 0.98,
+            ["Delay"] = 2,
             ["Skills"] = {
                 ["Z"] = {
                     ["Enable"] = false,
@@ -102,15 +102,15 @@ getgenv().Setting = {
             },
         },
         ["Sword"] = {
-            ["Enable"] = false,
+            ["Enable"] = true,
             ["Delay"] = 1,
             ["Skills"] = {
                 ["Z"] = {
                     ["Enable"] = true,
-                    ["HoldTime"] = 1.5,
+                    ["HoldTime"] = 0.3,
                 },
                 ["X"] = {
-                    ["Enable"] = true,
+                    ["Enable"] = false,
                     ["HoldTime"] = 0.5,
                 },
             },
