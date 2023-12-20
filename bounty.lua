@@ -47,7 +47,7 @@ getgenv().Setting = {
             ["Skills"] = {
                 ["Z"] = {
                     ["Enable"] = true,
-                    ["HoldTime"] = 1.3,
+                    ["HoldTime"] = 0,
                 },
                [ "X"] = {
                     ["Enable"] = true,
@@ -56,7 +56,7 @@ getgenv().Setting = {
 
                 ["C"] = {
                     ["Enable"] = true,
-                    ["HoldTime"] = 0.7,
+                    ["HoldTime"] = 1,
                 },
             },
         },
@@ -70,12 +70,12 @@ getgenv().Setting = {
                 },
                 ["X"] = {
                     ["Enable"] = true,
-                    ["HoldTime"] = 0.2,
+                    ["HoldTime"] = 0,
                 },
 
                 ["C"] = {
                     ["Enable"] = true,
-                    ["HoldTime"] = 0.4,
+                    ["HoldTime"] = 0,
                 },
                 ["V"] = {
                     ["Enable"] = false,
@@ -102,7 +102,7 @@ getgenv().Setting = {
             },
         },
         ["Sword"] = {
-            ["Enable"] = true,
+            ["Enable"] = false,
             ["Delay"] = 1,
             ["Skills"] = {
                 ["Z"] = {
