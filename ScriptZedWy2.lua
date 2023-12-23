@@ -67,18 +67,47 @@ function toposition(Pos)
         _G.Clip = false
     end
 end
+    function EquipWeapon(ToolSe)
+        if not _G.NotAutoEquip then
+            if game.Players.LocalPlayer.Backpack:FindFirstChild(ToolSe) then
+                Tool = game.Players.LocalPlayer.Backpack:FindFirstChild(ToolSe)
+                wait(.1)
+                game.Players.LocalPlayer.Character.Humanoid:EquipTool(Tool)
+            end
+        end
+    end
 -- drop fruits minify
 function dm()
     spawn(function()
         while wait() do
             if autorand then
                 pcall(function()
-                    game:GetService("VirtualInputManager"):SendKeyEvent(false,"27",false,game)
-                    game:GetService("VirtualInputManager"):SendKeyEvent(true,"27",false,game)
-                end)
-            end
+                for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
+                    if string.find(v.Name, "Fruit") then
+                        EquipWeapon(v.Name)
+                        wait(.1)
+                        if game:GetService("Players").LocalPlayer.PlayerGui.Main.Dialogue.Visible == true then
+                            game:GetService("Players").LocalPlayer.PlayerGui.Main.Dialogue.Visible = false
+                        end
+                        EquipWeapon(v.Name)
+                        game:GetService("Players").LocalPlayer.Character:FindFirstChild(SelectFruit).EatRemote:InvokeServer("Drop")
+                    end
+                end
+            for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
+                    if string.find(v.Name, "Fruit") then
+                        EquipWeapon(v.Name)
+                        wait(.1)
+                        if game:GetService("Players").LocalPlayer.PlayerGui.Main.Dialogue.Visible == true then
+                            game:GetService("Players").LocalPlayer.PlayerGui.Main.Dialogue.Visible = false
+                        end
+                        EquipWeapon(v.Name)
+                        game:GetService("Players").LocalPlayer.Character:FindFirstChild(SelectFruit).EatRemote:InvokeServer("Drop")
+                    end
+                end
+            end)
         end
-    end)
+    end
+end)
 end
 wait(1)
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
