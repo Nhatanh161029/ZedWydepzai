@@ -77,6 +77,42 @@ end
         end
     end
 -- drop fruits minify
+FruitList = {
+    "Bomb-Bomb",
+    "Spike-Spike",
+    "Chop-Chop",
+    "Spring-Spring",
+    "Kilo-Kilo",
+    "Spin-Spin",
+    "Bird: Falcon",
+    "Smoke-Smoke",
+    "Flame-Flame",
+    "Ice-Ice",
+    "Sand-Sand",
+    "Dark-Dark",
+    "Revive-Revive",
+    "Diamond-Diamond",
+    "Light-Light",
+    "Love-Love",
+    "Rubber-Rubber",
+    "Barrier-Barrier",
+    "Magma-Magma",
+    "Door-Door",
+    "Quake-Quake",
+    "Human-Human: Buddha",
+    "String-String",
+    "Bird-Bird: Phoenix",
+    "Rumble-Rumble",
+    "Paw-Paw",
+    "Gravity-Gravity",
+    "Dough-Dough",
+    "Venom-Venom",
+    "Shadow-Shadow",
+    "Control-Control",
+    "Soul-Soul",
+    "Dragon-Dragon",
+    "Mammoth-Mammoth"
+}
 function dm()
     spawn(function()
         while wait() do
@@ -90,7 +126,9 @@ function dm()
                             game:GetService("Players").LocalPlayer.PlayerGui.Main.Dialogue.Visible = false
                         end
                         EquipWeapon(v.Name)
-                        game:GetService("Players").LocalPlayer.Character:FindFirstChild(SelectFruit).EatRemote:InvokeServer("Drop")
+                        for i,v in pairs(FruitList) do 
+                        game:GetService("Players").LocalPlayer.Character:FindFirstChild(v).EatRemote:InvokeServer("Drop")
+                        end
                     end
                 end
             for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
@@ -101,7 +139,9 @@ function dm()
                             game:GetService("Players").LocalPlayer.PlayerGui.Main.Dialogue.Visible = false
                         end
                         EquipWeapon(v.Name)
-                        game:GetService("Players").LocalPlayer.Character:FindFirstChild(SelectFruit).EatRemote:InvokeServer("Drop")
+                        for i,v in pairs(FruitList) do 
+                            game:GetService("Players").LocalPlayer.Character:FindFirstChild(v).EatRemote:InvokeServer("Drop")
+                        end
                     end
                 end
             end)
