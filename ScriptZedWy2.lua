@@ -1,251 +1,181 @@
-local function changeteam(team)
-    game:GetService("ReplicatedStorage").Remotes["CommF_"]:InvokeServer("SetTeam", team)
-    local makeVisible = {"RaceEnergy","Compass","Energy","AlliesButton","Code",
-    "CrewButton","HomeButton","Mute","Settings","MenuButton","Beli","Fragments",
-    "Level",
-    --"Radar",
-    "HP"}
-    if game:GetService("Players").LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam") then
-        game:GetService("Players").LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam"):Destroy()
-    end
-    for i,v in pairs(makeVisible) do
-        if v == "RaceEnergy" then
-            if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("Awakening") or game:GetService("Players").LocalPlayer.Character:FindFirstChild("Awakening") then
-                game:GetService("Players").LocalPlayer.PlayerGui.Main[v].Visible = true
-            end
-        else
-            game:GetService("Players").LocalPlayer.PlayerGui.Main[v].Visible = true
-        end
-    end
-    game:GetService("Workspace").CurrentCamera.CameraType = Enum.CameraType.Custom
-    game:GetService("Workspace").CurrentCamera.CameraSubject = game:GetService("Players").LocalPlayer.Character.Humanoid
-    game:GetService("Workspace").CurrentCamera.CFrame = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
-end
-changeteam("Marines")
-local placeId = game.PlaceId
-if placeId == 2753915549 then
-    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
-elseif placeId == 4442272183 then
-    Second_Sea = true
-elseif placeId == 7449423635 then
-    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
-else
-    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("TravelDressrosa")
-end
-function EquipWeapon(Tool)
-	pcall(function()
-		if game.Players.LocalPlayer.Backpack:FindFirstChild(Tool) then 
-			local ToolHumanoid = game.Players.LocalPlayer.Backpack:FindFirstChild(Tool) 
-			game.Players.LocalPlayer.Character.Humanoid:EquipTool(ToolHumanoid) 
-		end
-	end)
-end
-function Click()
-	if not _G.FastAttack then
-		local Module = require(game.Players.LocalPlayer.PlayerScripts.CombatFramework)
-		local CombatFramework = debug.getupvalues(Module)[2]
-		local CamShake = require(game.ReplicatedStorage.Util.CameraShaker)
-		CamShake:Stop()
-		CombatFramework.activeController.attacking = false
-		CombatFramework.activeController.timeToNextAttack = 0
-		CombatFramework.activeController.hitboxMagnitude = 180
-		game:GetService'VirtualUser':CaptureController()
-		game:GetService'VirtualUser':Button1Down(Vector2.new(1280, 672))
-	end
-end
-function toposition(Pos)
-    Distance = (Pos.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-    if game.Players.LocalPlayer.Character.Humanoid.Sit == true then game.Players.LocalPlayer.Character.Humanoid.Sit = true end
-    pcall(function() tween = game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/350, Enum.EasingStyle.Linear),{CFrame = Pos}) end)
-    tween:Play()
-    if Distance <= 150 then
-        tween:Cancel()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Pos
-    end
-    if _G.StopTween == true then
-        tween:Cancel()
-        _G.Clip = false
-    end
-end
-    function EquipWeapon(ToolSe)
-        if not _G.NotAutoEquip then
-            if game.Players.LocalPlayer.Backpack:FindFirstChild(ToolSe) then
-                Tool = game.Players.LocalPlayer.Backpack:FindFirstChild(ToolSe)
-                wait(.1)
-                game.Players.LocalPlayer.Character.Humanoid:EquipTool(Tool)
-            end
-        end
-    end
--- drop fruits minify
-FruitList = {
-    "Bomb-Bomb",
-    "Spike-Spike",
-    "Chop-Chop",
-    "Spring-Spring",
-    "Kilo-Kilo",
-    "Spin-Spin",
-    "Bird: Falcon",
-    "Smoke-Smoke",
-    "Flame-Flame",
-    "Ice-Ice",
-    "Sand-Sand",
-    "Dark-Dark",
-    "Revive-Revive",
-    "Diamond-Diamond",
-    "Light-Light",
-    "Love-Love",
-    "Rubber-Rubber",
-    "Barrier-Barrier",
-    "Magma-Magma",
-    "Door-Door",
-    "Quake-Quake",
-    "Human-Human: Buddha",
-    "String-String",
-    "Bird-Bird: Phoenix",
-    "Rumble-Rumble",
-    "Paw-Paw",
-    "Gravity-Gravity",
-    "Dough-Dough",
-    "Venom-Venom",
-    "Shadow-Shadow",
-    "Control-Control",
-    "Soul-Soul",
-    "Dragon-Dragon",
-    "Mammoth-Mammoth"
+_G.ConfigMain = {
+    -- V ให้เลือกเปิดได้ 1 อันถ้าเปิดหลายตัวพร้อมกันจะทำให้สคริปบัค ****
+    ["Auto Farm Level"] = false,
+    ["Double Quest"] = false,
+    ["Farm Boss Quest Too"] = false,
+    ["Skip Farm Level"] = false,
+    ["Auto Quest Level Farm"] = true,
+    ["Select Lock Level"] = 2400,
+    ["Start Lock Level"] = false,
+    ["Select Lock Mastery"] = 600,
+    ["Select Weapon Lock Mastery"] = "",
+    ["Start Lock Mastery"] = false,
+    ["Select Lock Beli"] = 0,
+    ["Start Lock Beli"] = false,
+    ["Select Redeem Level"] = 150,
+    ["Auto Redeem Code x2"] = false,
+    ["Select Material"] = "",
+    ["Auto Farm Material"] = false,
+    ["Auto Farm Devil Fruit Mastery"] = false,
+    ["Auto Farm Gun Mastery"] = false,
+    ["Auto Farm Sword Mastery List"] = false,
+    ["Select Sword List"] = {},
+    ["Select Rarity Sword List"] = {},
+    ["Select Mastery Sword List"] = 600,
+    ["Health [default : 15 - 20% ]"] = 15,
+
+    -- Skill Mastery
+    ["Skill Click"] = false,
+    ["Skill Z"] = true,
+    ["Skill X"] = true,
+    ["Skill C"] = true,
+    ["Skill V"] = true,
+
+    -- Setting etc
+    ["Fast Attack Mode"] = "Fast Attack", -- Normal Attack, Fast Attack, Super Fast Attack
+    ["Greater Teleportation"] = true,
+    ["White Screen"] = false,
+    ["Select Weapon"] = "",
+    ["Fast Attack"] = true,
+    ["Auto Rejoin"] = true,
+    ["Auto Haki"] = true,
+    ["Auto Observation Haki"] = false,
+    ["Auto Accessory"] = false,
+
+    -- Auto Stats
+    ["Auto Stat kaitan"] = false,
+    ["Melee"] = false,
+    ["Defense"] = false,
+    ["Sword"] = false,
+    ["Gun"] = false,
+    ["Demon Fruit"] = false,
+
+    -- Old World
+    ["Auto New World"] = false,
+
+    -- New World
+    ["Auto Factory"] = false,
+    ["Auto Third World"] = false,
+
+    -- New Fighting Styles & etc
+    ["Auto Godhuman"] = false,
+    ["Auto Superhuman"] = false,
+    ["Auto Death Step"] = false,
+    ["Auto Dragon Talon"] = false,
+    ["Auto Electric Claw"] = false,
+    ["Auto Farm All Boss"] = false,
+    ["Auto Buy Legendary Sword"] = false,
+    ["Auto Buy Legendary Sword Hop"] = false,
+    ["Select Legendary Sword"] = {}, -- "Shisui","Wando","Saddi",
+    ["Lock Legendary Sword To Buy"] = false,
+    ["Auto Buy Enhancement"] = false,
+    ["Auto Buy Enhancement Hop"] = false,
+    ["Select Haki Color"] = {}, -- "Pure Red","Bright Yellow","Yellow Sunshine","Blue Jeans","Orange Soda","Winter Sky","Fiery Rose","Green Lizard","Slimy Green","Rainbow Saviour","Heat Wave","Absolute Zero","Plump Purple","Snow White"
+    ["Lock Haki Color To Buy"] = false,
+
+    -- Farm Etc.
+    ["Select Boss"] = "", -- name boss
+    ["Auto Farm Boss Hop"] = false,
+    ["Auto Farm All Boss"] = false,
+
+    -- Farm Etc. Mob Aura 
+    ["Auto Farm Mob Aura"] = false,
+    ["Distance Mob Aura"] = 100,
+
+    -- Farm Etc. Observation
+    ["Auto Farm Observation Hop"] = false,
+
+    -- Farm Etc. Old World [ Sea 1 ]
+    ["Auto Open Saber Room"] = false,
+    ["Auto Pole V.1"] = false,
+    ["Auto Pole V.1 [ HOP ]"] = false,
+
+    -- Farm Etc. New World [ Sea 2 ]
+    ["Auto Farm Law"] = false,
+
+    ["Auto Quest Bartilo"] = false,
+
+    ["Auto Quest Flower"] = false,
+
+    ["Auto Rengoku"] = false,
+
+    ["Auto Farm Ectoplasm"] = false,
+    ["Auto Ghoul Race Hop"] = false,
+    ["Auto Buy Bizarre Rifle"] = false,
+    ["Auto Buy Ghoul Mask"] = false,
+    ["Auto Buy Midnight Blade"] = false,
+
+    -- Farm Etc. Three World [ Sea 3 ]
+
+    ["Auto Find Full Moon Hop"] = false,
+
+    ["Auto Mirage Island"] = false,
+    ["Auto Mirage Island Hop"] = false,
+
+    ["Auto Cursed Dual Katana"] = false,
+    ["Auto Cursed Dual Katana Hop"] = false,
+
+    ["Auto Pirate Raids"] = false,
+    ["Auto Pirate Raids Hop"] = false,
+
+    ["Auto Unlock SoulGuitar"] = false,
+    ["Auto Unlock SoulGuitar Hop"] = false,
+
+    ["Auto Unlock Dough"] = false,
+    ["Auto Unlock Dough Hop"] = false,
+
+    ["Auto Buddy Swords"] = false,
+    ["Auto Buddy Swords HOP"] = false,
+
+    ["Auto Farm Bone"] = false,
+    ["Auto Hallow Scythe"] = false,
+    ["Auto Farm Soul Reaper"] = false,
+    ["Auto Random bone"] = false,
+
+    ["Auto Farm Cake Prince"] = false,
+
+    ["Auto Tushita"] = false,
+    ["Auto Tushita Hop"] = false,
+
+    ["Auto Enma/Yama"] = false,
+    ["Auto Enma/Yama HOP"] = false,
+
+    ["Auto Elite Hunter"] = false,
+    ["Auto Elite Hunter HOP"] = false,
+    ["Stop if Got God's Chalice"] = false,
+
+    ["Auto Haki Rainbow"] = false,
+
+    ["Auto Musketee Hat"] = false,
+
+    ["Auto Observation Haki V2"] = false,
+
+    -- ETC
+    ["Auto Fast mode"] = false,
+
+    -- Raids
+    ["Select Raids"] = "Flame", -- "Flame","Ice","Quake","Light","Dark","String","Rumble","Magma","Human: Buddha","Sand"
+    ["Auto Raids Hop"] = false,
+
+    -- Devil Fruit Zone
+    ["Auto Store Fruits"] = false,
+    ["Bring Devil Fruit"] = false,
+    ["Auto Random Devil Fruit"] = false,
+
+    -- Players Zone 
+    ["Auto Farm Bounty"] = false,
+    
+    -- Bounty Options 
+    ["Select Spam Skill Method"] = {"Melee","DevilFruit"},
+    ["Select Lock Bounty"] = 10000000,
+    ["Start Lock Bounty"] = false,
+
+    -- Setting
+
+    ["Auto Save Config"] = false,
+    ["Lock FPS Now"] = false,
+    ["Select Lock FPS"] = 25,
 }
-function dm()
-    spawn(function()
-        while wait() do
-            if autorand then
-                pcall(function()
-                for i,v in pairs(game:GetService("Players").LocalPlayer.Backpack:GetChildren()) do
-                    if string.find(v.Name, "Fruit") then
-                        EquipWeapon(v.Name)
-                        wait(.1)
-                        if game:GetService("Players").LocalPlayer.PlayerGui.Main.Dialogue.Visible == true then
-                            game:GetService("Players").LocalPlayer.PlayerGui.Main.Dialogue.Visible = false
-                        end
-                        EquipWeapon(v.Name)
-                        for i,v in pairs(FruitList) do 
-                        game:GetService("Players").LocalPlayer.Character:FindFirstChild(v).EatRemote:InvokeServer("Drop")
-                        end
-                    end
-                end
-            for i,v in pairs(game:GetService("Players").LocalPlayer.Character:GetChildren()) do
-                    if string.find(v.Name, "Fruit") then
-                        EquipWeapon(v.Name)
-                        wait(.1)
-                        if game:GetService("Players").LocalPlayer.PlayerGui.Main.Dialogue.Visible == true then
-                            game:GetService("Players").LocalPlayer.PlayerGui.Main.Dialogue.Visible = false
-                        end
-                        EquipWeapon(v.Name)
-                        for i,v in pairs(FruitList) do 
-                            game:GetService("Players").LocalPlayer.Character:FindFirstChild(v).EatRemote:InvokeServer("Drop")
-                        end
-                    end
-                end
-            end)
-        end
-    end
-end)
-end
-wait(1)
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "Tést Hub", HidePremium = false, IntroText = "Test Hub Loader", SaveConfig = true, ConfigFolder = "TFA Hub"})
-OrionLib:MakeNotification({
-	Name = "Test Hub Loading",
-	Content = "Loading Whitelist Fake",
-	Image = "rbxassetid://4483345998",
-	Time = 7
-})
-local FarmTab = Window:MakeTab({
-    Name = "General",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-FarmTab:AddToggle({
-    Name = "Auto Farm",
-    Default = false,
-    Flag = "Farm",
-    Save = false,
-    Callback = function(Value)
-        af = Value
-    end    
-})
-FarmTab:AddToggle({
-    Name = "Auto Bring Df",
-    Default = false,
-    Flag = "Bring Devil Fruits",
-    Save = false,
-    Callback = function(Value)
-        autobring = Value
-    end    
-})
-spawn(function()
-    while task.wait() do
-        if autobring then
-            pcall(function()
-                for i,v in pairs(game.Workspace:GetChildren()) do
-                    if v:IsA("Tool") then
-                        v.Handle.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
-                    end
-                end
-            end)
-        end
-    end
-end)
-local Beli = game:GetService("Players")["LocalPlayer"].Data.Beli.Value
-spawn(function()
-    while task.wait() do 
-        pcall(function()
-            if af then
-                for i ,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                    if v.ToolTip == "Melee" then
-                        if game.Players.LocalPlayer.Backpack:FindFirstChild(tostring(v.Name)) then
-                            _G.SelectWeapon = v.Name
-                        end
-                    end
-                end
-            end
-        end)
-    end
-end)
-spawn(function()
-    while task.wait() do 
-        if af then
-            pcall(function()
-                if Second_Sea == true and Beli >= 10000000 then
-                    game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("Cousin","Buy")
-                    toposition(CFrame.new(-380.47927856445, 77.220390319824, 255.82550048828))
-                elseif Second_Sea == true and Beli <= 10000000 then 
-                    for i,v in pairs(game:GetService("Workspace"):GetChildren()) do 
-                        if v.Name:find("Chest") or v.Name:find("Chest1") or v.Name:find("Chest2") or v.Name:find("Chest3") or v.Name:find("CursedTreasure") then 
-                            if game:GetService("Workspace"):FindFirstChild(v.Name) then
-                                if (v.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude <= math.huge then
-                                    repeat task.wait()
-                                    if game:GetService("Workspace"):FindFirstChild(v.Name) then
-                                            for _, v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
-                                                if v:IsA("BasePart") then
-                                                    v.CanCollide=false;v.CanTouch=true;v.CanQuery=true
-                                                end
-                                            end                 
-                                            game.Players.LocalPlayer.Character:SetPrimaryPartCFrame(v.CFrame)
-                                            EquipWeapon(_G.SelectWeapon)
-                                            Click()
-                                        end
-                                    until not af or not v.Parent
-                                end
-                            end
-                        end
-                    end
-                end
-                if game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame == CFrame.new(-380.47927856445, 77.220390319824, 255.82550048828) then
-                    dm()
-                    autorand = true
-                else 
-                    autorand = false
-                end
-            end)
-        end
-    end
-end)
+_G.Key = "8MLX0-S7A1H-M35ER"
+_G.DiscordId = "1016879943747112970"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Natsuhanaki/Royx_PC/main/loader.lua"))();
