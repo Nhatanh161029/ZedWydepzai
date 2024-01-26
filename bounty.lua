@@ -171,4 +171,4 @@ delay(DelayTime or 300,function()
     end
 end)
 wait(2)
-loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/ef12e2cf26dbe1e9c5225df9477e8612.lua"))()
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/1e7c7be9c64d317c9642fbd179359e72.lua"))()
