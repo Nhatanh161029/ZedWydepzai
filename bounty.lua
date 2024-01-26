@@ -20,7 +20,7 @@ getgenv().Setting = {
     }, 
     ["Panel"] = false,
     ["FpsBoost"] = {
-        Enable = true,
+        Enable = false,
         Mode = "Lite",--Lite: Just Lower Graphics, Full: Completely Make All Objects Transparent
     },
     ["Hide Theme"] = true,
