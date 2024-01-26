@@ -182,7 +182,7 @@ getgenv().Setting = {
                     ["TimeToNextSkill"] = 0,
                 },
                 ["V"] = {
-                    ["Enable"] = true,
+                    ["Enable"] = false,
                     ["HoldTime"] = 0,
                     ["TimeToNextSkill"] = 0,
                 },
@@ -210,7 +210,7 @@ getgenv().Setting = {
             },
         },
         ["Gun"] = {
-            ["Enable"] = true,
+            ["Enable"] = false,
             ["Delay"] = 0.1,
             ["Skills"] = {
                 ["Z"] = {
