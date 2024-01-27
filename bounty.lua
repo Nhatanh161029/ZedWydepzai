@@ -4,7 +4,7 @@ end
 --Put Your Key Between ""
 script_key="LLoVJnKozTqOHLZzHZzTeLjWnsAuCdMs";
 DelayTime = 300
-getgenv().FpsBoost = false
+getgenv().FpsBoost = true
 getgenv().Setting = {
     ["Team"] = "Pirates",  --Marines
     ["Webhook"] = {
@@ -20,7 +20,7 @@ getgenv().Setting = {
     }, 
     ["Panel"] = false,
     ["FpsBoost"] = {
-        Enable = false,
+        Enable = true,
         Mode = "Lite",--Lite: Just Lower Graphics, Full: Completely Make All Objects Transparent
     },
     ["Hide Theme"] = true,
