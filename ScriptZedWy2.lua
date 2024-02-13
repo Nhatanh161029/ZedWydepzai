@@ -37,7 +37,6 @@ Tab:AddToggle(
         Name = "Auto Fish (Advanced)",
         Default = false,
         Callback = function(v)
-            Config.autoFishA = v
             spawn(autoFishA)
         end
     }
